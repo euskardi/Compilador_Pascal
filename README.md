@@ -1,1 +1,3 @@
 # Compilador_Pascal
+
+Un compilador de Pascal hecho en Python es un programa que toma código fuente escrito en el lenguaje de programación Pascal como entrada y lo traduce a un lenguaje de máquina o código intermedio que puede ejecutarse en una computadora. Este compilador se implementa en el lenguaje de programación Python y realiza varias etapas de procesamiento, como análisis léxico, análisis sintáctico y generación de código, para convertir el código Pascal en un formato ejecutable o interpretable. En resumen, es una herramienta que permite a los programadores escribir programas en Pascal y luego convertirlos en instrucciones que la computadora puede entender y ejecutar.
