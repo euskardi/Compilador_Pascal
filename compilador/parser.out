@@ -1,0 +1,3038 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NOT
+    SAME
+    TO
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PROGRAM ID LKEY V BEGIN SEMICOLON statement_list END SEMICOLON RKEY
+Rule 2     V -> VAR content_var
+Rule 3     V -> <empty>
+Rule 4     content_var -> variable content_var
+Rule 5     content_var -> variable
+Rule 6     variable -> lista COLON INTEGER SEMICOLON
+Rule 7     variable -> lista COLON REAL SEMICOLON
+Rule 8     variable -> lista COLON STRING SEMICOLON
+Rule 9     variable -> lista COLON CHARACTER SEMICOLON
+Rule 10    variable -> lista COLON BOOLEAN SEMICOLON
+Rule 11    variable -> ID COLON INTEGER SEMICOLON
+Rule 12    variable -> ID COLON REAL SEMICOLON
+Rule 13    variable -> ID COLON STRING SEMICOLON
+Rule 14    variable -> ID COLON CHARACTER SEMICOLON
+Rule 15    variable -> ID COLON BOOLEAN SEMICOLON
+Rule 16    lista -> ID
+Rule 17    lista -> ID COMMA lista
+Rule 18    statement_list -> statement
+Rule 19    statement_list -> statement_list statement
+Rule 20    statement -> assignment_stmt SEMICOLON
+Rule 21    statement -> expression_stmt SEMICOLON
+Rule 22    statement -> if_stmt
+Rule 23    statement -> while_stmt
+Rule 24    statement -> for_stmt
+Rule 25    statement -> write_stmt SEMICOLON
+Rule 26    statement -> change SEMICOLON
+Rule 27    write_stmt -> WRITE LPAREN factor RPAREN
+Rule 28    write_stmt -> WRITE LPAREN expression RPAREN
+Rule 29    write_stmt -> WRITE LPAREN expression_string RPAREN
+Rule 30    write_stmt -> WRITE LPAREN expression_bool RPAREN
+Rule 31    expression_stmt -> expression
+Rule 32    expression_stmt -> expression_bool
+Rule 33    assignment_stmt -> ID ASSIGN expression
+Rule 34    assignment_stmt -> ID ASSIGN expression_bool
+Rule 35    assignment_stmt -> ID ASSIGN expression_string
+Rule 36    expression_string -> expression_string PLUS STR_value
+Rule 37    expression_string -> STR_value
+Rule 38    STR_value -> STR
+Rule 39    if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+Rule 40    if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+Rule 41    while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+Rule 42    for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+Rule 43    expression_bool -> expression_bool AND comparation
+Rule 44    expression_bool -> expression_bool OR comparation
+Rule 45    expression_bool -> comparation
+Rule 46    comparation -> expression GREATER expression
+Rule 47    comparation -> expression GREATER_EQUAL expression
+Rule 48    comparation -> expression LESS expression
+Rule 49    comparation -> expression LESS_EQUAL expression
+Rule 50    comparation -> expression DIFFERENT expression
+Rule 51    comparation -> expression EQUALS expression
+Rule 52    comparation -> factor_bool
+Rule 53    factor_bool -> LPAREN expression_bool RPAREN
+Rule 54    factor_bool -> BOOL
+Rule 55    expression -> expression PLUS term
+Rule 56    expression -> expression MINUS term
+Rule 57    expression -> term
+Rule 58    term -> term MOD factor
+Rule 59    term -> term TIMES factor
+Rule 60    term -> term DIVIDE factor
+Rule 61    term -> factor
+Rule 62    factor -> LPAREN expression RPAREN
+Rule 63    factor -> INT
+Rule 64    factor -> FLOAT
+Rule 65    factor -> ID
+Rule 66    change -> ID INCREMENT
+Rule 67    change -> ID DECREMENT
+
+Terminals, with rules where they appear
+
+AND                  : 43
+ASSIGN               : 33 34 35
+BEGIN                : 1
+BOOL                 : 54
+BOOLEAN              : 10 15
+CHARACTER            : 9 14
+COLON                : 6 7 8 9 10 11 12 13 14 15
+COMMA                : 17
+DECREMENT            : 67
+DIFFERENT            : 50
+DIVIDE               : 60
+DO                   : 41
+ELSE                 : 40
+END                  : 1
+EQUALS               : 51
+FLOAT                : 64
+FOR                  : 42
+GREATER              : 46
+GREATER_EQUAL        : 47
+ID                   : 1 11 12 13 14 15 16 17 33 34 35 65 66 67
+IF                   : 39 40
+INCREMENT            : 66
+INT                  : 63
+INTEGER              : 6 11
+LESS                 : 48
+LESS_EQUAL           : 49
+LKEY                 : 1 39 40 40 41 42
+LPAREN               : 27 28 29 30 39 40 41 42 53 62
+MINUS                : 56
+MOD                  : 58
+NOT                  : 
+OR                   : 44
+PLUS                 : 36 55
+PROGRAM              : 1
+REAL                 : 7 12
+RKEY                 : 1 39 40 40 41 42
+RPAREN               : 27 28 29 30 39 40 41 42 53 62
+SAME                 : 
+SEMICOLON            : 1 1 6 7 8 9 10 11 12 13 14 15 20 21 25 26 42 42
+STR                  : 38
+STRING               : 8 13
+THEN                 : 39 40
+TIMES                : 59
+TO                   : 
+VAR                  : 2
+WHILE                : 41
+WRITE                : 27 28 29 30
+error                : 
+
+Nonterminals, with rules where they appear
+
+STR_value            : 36 37
+V                    : 1
+assignment_stmt      : 20 42
+change               : 26 42
+comparation          : 43 44 45
+content_var          : 2 4
+expression           : 28 31 33 46 46 47 47 48 48 49 49 50 50 51 51 55 56 62
+expression_bool      : 30 32 34 39 40 41 42 43 44 53
+expression_stmt      : 21
+expression_string    : 29 35 36
+factor               : 27 58 59 60 61
+factor_bool          : 52
+for_stmt             : 24
+if_stmt              : 22
+lista                : 6 7 8 9 10 17
+program              : 0
+statement            : 18 19
+statement_list       : 1 19 39 40 40 41 42
+term                 : 55 56 57 58 59 60
+variable             : 4 5
+while_stmt           : 23
+write_stmt           : 25
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PROGRAM ID LKEY V BEGIN SEMICOLON statement_list END SEMICOLON RKEY
+
+    PROGRAM         shift and go to state 2
+
+    program                        shift and go to state 1
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> PROGRAM . ID LKEY V BEGIN SEMICOLON statement_list END SEMICOLON RKEY
+
+    ID              shift and go to state 3
+
+
+state 3
+
+    (1) program -> PROGRAM ID . LKEY V BEGIN SEMICOLON statement_list END SEMICOLON RKEY
+
+    LKEY            shift and go to state 4
+
+
+state 4
+
+    (1) program -> PROGRAM ID LKEY . V BEGIN SEMICOLON statement_list END SEMICOLON RKEY
+    (2) V -> . VAR content_var
+    (3) V -> .
+
+    VAR             shift and go to state 6
+    BEGIN           reduce using rule 3 (V -> .)
+
+    V                              shift and go to state 5
+
+state 5
+
+    (1) program -> PROGRAM ID LKEY V . BEGIN SEMICOLON statement_list END SEMICOLON RKEY
+
+    BEGIN           shift and go to state 7
+
+
+state 6
+
+    (2) V -> VAR . content_var
+    (4) content_var -> . variable content_var
+    (5) content_var -> . variable
+    (6) variable -> . lista COLON INTEGER SEMICOLON
+    (7) variable -> . lista COLON REAL SEMICOLON
+    (8) variable -> . lista COLON STRING SEMICOLON
+    (9) variable -> . lista COLON CHARACTER SEMICOLON
+    (10) variable -> . lista COLON BOOLEAN SEMICOLON
+    (11) variable -> . ID COLON INTEGER SEMICOLON
+    (12) variable -> . ID COLON REAL SEMICOLON
+    (13) variable -> . ID COLON STRING SEMICOLON
+    (14) variable -> . ID COLON CHARACTER SEMICOLON
+    (15) variable -> . ID COLON BOOLEAN SEMICOLON
+    (16) lista -> . ID
+    (17) lista -> . ID COMMA lista
+
+    ID              shift and go to state 11
+
+    content_var                    shift and go to state 8
+    variable                       shift and go to state 9
+    lista                          shift and go to state 10
+
+state 7
+
+    (1) program -> PROGRAM ID LKEY V BEGIN . SEMICOLON statement_list END SEMICOLON RKEY
+
+    SEMICOLON       shift and go to state 12
+
+
+state 8
+
+    (2) V -> VAR content_var .
+
+    BEGIN           reduce using rule 2 (V -> VAR content_var .)
+
+
+state 9
+
+    (4) content_var -> variable . content_var
+    (5) content_var -> variable .
+    (4) content_var -> . variable content_var
+    (5) content_var -> . variable
+    (6) variable -> . lista COLON INTEGER SEMICOLON
+    (7) variable -> . lista COLON REAL SEMICOLON
+    (8) variable -> . lista COLON STRING SEMICOLON
+    (9) variable -> . lista COLON CHARACTER SEMICOLON
+    (10) variable -> . lista COLON BOOLEAN SEMICOLON
+    (11) variable -> . ID COLON INTEGER SEMICOLON
+    (12) variable -> . ID COLON REAL SEMICOLON
+    (13) variable -> . ID COLON STRING SEMICOLON
+    (14) variable -> . ID COLON CHARACTER SEMICOLON
+    (15) variable -> . ID COLON BOOLEAN SEMICOLON
+    (16) lista -> . ID
+    (17) lista -> . ID COMMA lista
+
+    BEGIN           reduce using rule 5 (content_var -> variable .)
+    ID              shift and go to state 11
+
+    variable                       shift and go to state 9
+    content_var                    shift and go to state 13
+    lista                          shift and go to state 10
+
+state 10
+
+    (6) variable -> lista . COLON INTEGER SEMICOLON
+    (7) variable -> lista . COLON REAL SEMICOLON
+    (8) variable -> lista . COLON STRING SEMICOLON
+    (9) variable -> lista . COLON CHARACTER SEMICOLON
+    (10) variable -> lista . COLON BOOLEAN SEMICOLON
+
+    COLON           shift and go to state 14
+
+
+state 11
+
+    (11) variable -> ID . COLON INTEGER SEMICOLON
+    (12) variable -> ID . COLON REAL SEMICOLON
+    (13) variable -> ID . COLON STRING SEMICOLON
+    (14) variable -> ID . COLON CHARACTER SEMICOLON
+    (15) variable -> ID . COLON BOOLEAN SEMICOLON
+    (16) lista -> ID .
+    (17) lista -> ID . COMMA lista
+
+  ! shift/reduce conflict for COLON resolved as shift
+    COLON           shift and go to state 15
+    COMMA           shift and go to state 16
+
+  ! COLON           [ reduce using rule 16 (lista -> ID .) ]
+
+
+state 12
+
+    (1) program -> PROGRAM ID LKEY V BEGIN SEMICOLON . statement_list END SEMICOLON RKEY
+    (18) statement_list -> . statement
+    (19) statement_list -> . statement_list statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    statement_list                 shift and go to state 18
+    statement                      shift and go to state 19
+    assignment_stmt                shift and go to state 20
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    change                         shift and go to state 26
+    expression                     shift and go to state 27
+    expression_bool                shift and go to state 28
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 13
+
+    (4) content_var -> variable content_var .
+
+    BEGIN           reduce using rule 4 (content_var -> variable content_var .)
+
+
+state 14
+
+    (6) variable -> lista COLON . INTEGER SEMICOLON
+    (7) variable -> lista COLON . REAL SEMICOLON
+    (8) variable -> lista COLON . STRING SEMICOLON
+    (9) variable -> lista COLON . CHARACTER SEMICOLON
+    (10) variable -> lista COLON . BOOLEAN SEMICOLON
+
+    INTEGER         shift and go to state 41
+    REAL            shift and go to state 42
+    STRING          shift and go to state 43
+    CHARACTER       shift and go to state 44
+    BOOLEAN         shift and go to state 45
+
+
+state 15
+
+    (11) variable -> ID COLON . INTEGER SEMICOLON
+    (12) variable -> ID COLON . REAL SEMICOLON
+    (13) variable -> ID COLON . STRING SEMICOLON
+    (14) variable -> ID COLON . CHARACTER SEMICOLON
+    (15) variable -> ID COLON . BOOLEAN SEMICOLON
+
+    INTEGER         shift and go to state 46
+    REAL            shift and go to state 47
+    STRING          shift and go to state 48
+    CHARACTER       shift and go to state 49
+    BOOLEAN         shift and go to state 50
+
+
+state 16
+
+    (17) lista -> ID COMMA . lista
+    (16) lista -> . ID
+    (17) lista -> . ID COMMA lista
+
+    ID              shift and go to state 51
+
+    lista                          shift and go to state 52
+
+state 17
+
+    (33) assignment_stmt -> ID . ASSIGN expression
+    (34) assignment_stmt -> ID . ASSIGN expression_bool
+    (35) assignment_stmt -> ID . ASSIGN expression_string
+    (66) change -> ID . INCREMENT
+    (67) change -> ID . DECREMENT
+    (65) factor -> ID .
+
+    ASSIGN          shift and go to state 53
+    INCREMENT       shift and go to state 54
+    DECREMENT       shift and go to state 55
+    MOD             reduce using rule 65 (factor -> ID .)
+    TIMES           reduce using rule 65 (factor -> ID .)
+    DIVIDE          reduce using rule 65 (factor -> ID .)
+    PLUS            reduce using rule 65 (factor -> ID .)
+    MINUS           reduce using rule 65 (factor -> ID .)
+    GREATER         reduce using rule 65 (factor -> ID .)
+    GREATER_EQUAL   reduce using rule 65 (factor -> ID .)
+    LESS            reduce using rule 65 (factor -> ID .)
+    LESS_EQUAL      reduce using rule 65 (factor -> ID .)
+    DIFFERENT       reduce using rule 65 (factor -> ID .)
+    EQUALS          reduce using rule 65 (factor -> ID .)
+    SEMICOLON       reduce using rule 65 (factor -> ID .)
+
+
+state 18
+
+    (1) program -> PROGRAM ID LKEY V BEGIN SEMICOLON statement_list . END SEMICOLON RKEY
+    (19) statement_list -> statement_list . statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    END             shift and go to state 56
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    statement                      shift and go to state 57
+    assignment_stmt                shift and go to state 20
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    change                         shift and go to state 26
+    expression                     shift and go to state 27
+    expression_bool                shift and go to state 28
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 19
+
+    (18) statement_list -> statement .
+
+    END             reduce using rule 18 (statement_list -> statement .)
+    ID              reduce using rule 18 (statement_list -> statement .)
+    IF              reduce using rule 18 (statement_list -> statement .)
+    WHILE           reduce using rule 18 (statement_list -> statement .)
+    FOR             reduce using rule 18 (statement_list -> statement .)
+    WRITE           reduce using rule 18 (statement_list -> statement .)
+    LPAREN          reduce using rule 18 (statement_list -> statement .)
+    INT             reduce using rule 18 (statement_list -> statement .)
+    FLOAT           reduce using rule 18 (statement_list -> statement .)
+    BOOL            reduce using rule 18 (statement_list -> statement .)
+    RKEY            reduce using rule 18 (statement_list -> statement .)
+
+
+state 20
+
+    (20) statement -> assignment_stmt . SEMICOLON
+
+    SEMICOLON       shift and go to state 58
+
+
+state 21
+
+    (21) statement -> expression_stmt . SEMICOLON
+
+    SEMICOLON       shift and go to state 59
+
+
+state 22
+
+    (22) statement -> if_stmt .
+
+    END             reduce using rule 22 (statement -> if_stmt .)
+    ID              reduce using rule 22 (statement -> if_stmt .)
+    IF              reduce using rule 22 (statement -> if_stmt .)
+    WHILE           reduce using rule 22 (statement -> if_stmt .)
+    FOR             reduce using rule 22 (statement -> if_stmt .)
+    WRITE           reduce using rule 22 (statement -> if_stmt .)
+    LPAREN          reduce using rule 22 (statement -> if_stmt .)
+    INT             reduce using rule 22 (statement -> if_stmt .)
+    FLOAT           reduce using rule 22 (statement -> if_stmt .)
+    BOOL            reduce using rule 22 (statement -> if_stmt .)
+    RKEY            reduce using rule 22 (statement -> if_stmt .)
+
+
+state 23
+
+    (23) statement -> while_stmt .
+
+    END             reduce using rule 23 (statement -> while_stmt .)
+    ID              reduce using rule 23 (statement -> while_stmt .)
+    IF              reduce using rule 23 (statement -> while_stmt .)
+    WHILE           reduce using rule 23 (statement -> while_stmt .)
+    FOR             reduce using rule 23 (statement -> while_stmt .)
+    WRITE           reduce using rule 23 (statement -> while_stmt .)
+    LPAREN          reduce using rule 23 (statement -> while_stmt .)
+    INT             reduce using rule 23 (statement -> while_stmt .)
+    FLOAT           reduce using rule 23 (statement -> while_stmt .)
+    BOOL            reduce using rule 23 (statement -> while_stmt .)
+    RKEY            reduce using rule 23 (statement -> while_stmt .)
+
+
+state 24
+
+    (24) statement -> for_stmt .
+
+    END             reduce using rule 24 (statement -> for_stmt .)
+    ID              reduce using rule 24 (statement -> for_stmt .)
+    IF              reduce using rule 24 (statement -> for_stmt .)
+    WHILE           reduce using rule 24 (statement -> for_stmt .)
+    FOR             reduce using rule 24 (statement -> for_stmt .)
+    WRITE           reduce using rule 24 (statement -> for_stmt .)
+    LPAREN          reduce using rule 24 (statement -> for_stmt .)
+    INT             reduce using rule 24 (statement -> for_stmt .)
+    FLOAT           reduce using rule 24 (statement -> for_stmt .)
+    BOOL            reduce using rule 24 (statement -> for_stmt .)
+    RKEY            reduce using rule 24 (statement -> for_stmt .)
+
+
+state 25
+
+    (25) statement -> write_stmt . SEMICOLON
+
+    SEMICOLON       shift and go to state 60
+
+
+state 26
+
+    (26) statement -> change . SEMICOLON
+
+    SEMICOLON       shift and go to state 61
+
+
+state 27
+
+    (31) expression_stmt -> expression .
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+    (46) comparation -> expression . GREATER expression
+    (47) comparation -> expression . GREATER_EQUAL expression
+    (48) comparation -> expression . LESS expression
+    (49) comparation -> expression . LESS_EQUAL expression
+    (50) comparation -> expression . DIFFERENT expression
+    (51) comparation -> expression . EQUALS expression
+
+    SEMICOLON       reduce using rule 31 (expression_stmt -> expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+    GREATER         shift and go to state 64
+    GREATER_EQUAL   shift and go to state 65
+    LESS            shift and go to state 66
+    LESS_EQUAL      shift and go to state 67
+    DIFFERENT       shift and go to state 68
+    EQUALS          shift and go to state 69
+
+
+state 28
+
+    (32) expression_stmt -> expression_bool .
+    (43) expression_bool -> expression_bool . AND comparation
+    (44) expression_bool -> expression_bool . OR comparation
+
+    SEMICOLON       reduce using rule 32 (expression_stmt -> expression_bool .)
+    AND             shift and go to state 70
+    OR              shift and go to state 71
+
+
+state 29
+
+    (39) if_stmt -> IF . LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> IF . LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+
+    LPAREN          shift and go to state 72
+
+
+state 30
+
+    (62) factor -> LPAREN . expression RPAREN
+    (53) factor_bool -> LPAREN . expression_bool RPAREN
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+    BOOL            shift and go to state 40
+
+    expression                     shift and go to state 73
+    expression_bool                shift and go to state 74
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor                         shift and go to state 34
+    factor_bool                    shift and go to state 37
+
+state 31
+
+    (41) while_stmt -> WHILE . LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+
+    LPAREN          shift and go to state 76
+
+
+state 32
+
+    (42) for_stmt -> FOR . LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+
+    LPAREN          shift and go to state 77
+
+
+state 33
+
+    (27) write_stmt -> WRITE . LPAREN factor RPAREN
+    (28) write_stmt -> WRITE . LPAREN expression RPAREN
+    (29) write_stmt -> WRITE . LPAREN expression_string RPAREN
+    (30) write_stmt -> WRITE . LPAREN expression_bool RPAREN
+
+    LPAREN          shift and go to state 78
+
+
+state 34
+
+    (61) term -> factor .
+
+    MOD             reduce using rule 61 (term -> factor .)
+    TIMES           reduce using rule 61 (term -> factor .)
+    DIVIDE          reduce using rule 61 (term -> factor .)
+    PLUS            reduce using rule 61 (term -> factor .)
+    MINUS           reduce using rule 61 (term -> factor .)
+    GREATER         reduce using rule 61 (term -> factor .)
+    GREATER_EQUAL   reduce using rule 61 (term -> factor .)
+    LESS            reduce using rule 61 (term -> factor .)
+    LESS_EQUAL      reduce using rule 61 (term -> factor .)
+    DIFFERENT       reduce using rule 61 (term -> factor .)
+    EQUALS          reduce using rule 61 (term -> factor .)
+    SEMICOLON       reduce using rule 61 (term -> factor .)
+    RPAREN          reduce using rule 61 (term -> factor .)
+    AND             reduce using rule 61 (term -> factor .)
+    OR              reduce using rule 61 (term -> factor .)
+
+
+state 35
+
+    (57) expression -> term .
+    (58) term -> term . MOD factor
+    (59) term -> term . TIMES factor
+    (60) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 57 (expression -> term .)
+    MINUS           reduce using rule 57 (expression -> term .)
+    GREATER         reduce using rule 57 (expression -> term .)
+    GREATER_EQUAL   reduce using rule 57 (expression -> term .)
+    LESS            reduce using rule 57 (expression -> term .)
+    LESS_EQUAL      reduce using rule 57 (expression -> term .)
+    DIFFERENT       reduce using rule 57 (expression -> term .)
+    EQUALS          reduce using rule 57 (expression -> term .)
+    SEMICOLON       reduce using rule 57 (expression -> term .)
+    RPAREN          reduce using rule 57 (expression -> term .)
+    AND             reduce using rule 57 (expression -> term .)
+    OR              reduce using rule 57 (expression -> term .)
+    MOD             shift and go to state 79
+    TIMES           shift and go to state 80
+    DIVIDE          shift and go to state 81
+
+
+state 36
+
+    (45) expression_bool -> comparation .
+
+    AND             reduce using rule 45 (expression_bool -> comparation .)
+    OR              reduce using rule 45 (expression_bool -> comparation .)
+    SEMICOLON       reduce using rule 45 (expression_bool -> comparation .)
+    RPAREN          reduce using rule 45 (expression_bool -> comparation .)
+
+
+state 37
+
+    (52) comparation -> factor_bool .
+
+    AND             reduce using rule 52 (comparation -> factor_bool .)
+    OR              reduce using rule 52 (comparation -> factor_bool .)
+    SEMICOLON       reduce using rule 52 (comparation -> factor_bool .)
+    RPAREN          reduce using rule 52 (comparation -> factor_bool .)
+
+
+state 38
+
+    (63) factor -> INT .
+
+    MOD             reduce using rule 63 (factor -> INT .)
+    TIMES           reduce using rule 63 (factor -> INT .)
+    DIVIDE          reduce using rule 63 (factor -> INT .)
+    PLUS            reduce using rule 63 (factor -> INT .)
+    MINUS           reduce using rule 63 (factor -> INT .)
+    GREATER         reduce using rule 63 (factor -> INT .)
+    GREATER_EQUAL   reduce using rule 63 (factor -> INT .)
+    LESS            reduce using rule 63 (factor -> INT .)
+    LESS_EQUAL      reduce using rule 63 (factor -> INT .)
+    DIFFERENT       reduce using rule 63 (factor -> INT .)
+    EQUALS          reduce using rule 63 (factor -> INT .)
+    SEMICOLON       reduce using rule 63 (factor -> INT .)
+    RPAREN          reduce using rule 63 (factor -> INT .)
+    AND             reduce using rule 63 (factor -> INT .)
+    OR              reduce using rule 63 (factor -> INT .)
+
+
+state 39
+
+    (64) factor -> FLOAT .
+
+    MOD             reduce using rule 64 (factor -> FLOAT .)
+    TIMES           reduce using rule 64 (factor -> FLOAT .)
+    DIVIDE          reduce using rule 64 (factor -> FLOAT .)
+    PLUS            reduce using rule 64 (factor -> FLOAT .)
+    MINUS           reduce using rule 64 (factor -> FLOAT .)
+    GREATER         reduce using rule 64 (factor -> FLOAT .)
+    GREATER_EQUAL   reduce using rule 64 (factor -> FLOAT .)
+    LESS            reduce using rule 64 (factor -> FLOAT .)
+    LESS_EQUAL      reduce using rule 64 (factor -> FLOAT .)
+    DIFFERENT       reduce using rule 64 (factor -> FLOAT .)
+    EQUALS          reduce using rule 64 (factor -> FLOAT .)
+    SEMICOLON       reduce using rule 64 (factor -> FLOAT .)
+    RPAREN          reduce using rule 64 (factor -> FLOAT .)
+    AND             reduce using rule 64 (factor -> FLOAT .)
+    OR              reduce using rule 64 (factor -> FLOAT .)
+
+
+state 40
+
+    (54) factor_bool -> BOOL .
+
+    AND             reduce using rule 54 (factor_bool -> BOOL .)
+    OR              reduce using rule 54 (factor_bool -> BOOL .)
+    SEMICOLON       reduce using rule 54 (factor_bool -> BOOL .)
+    RPAREN          reduce using rule 54 (factor_bool -> BOOL .)
+
+
+state 41
+
+    (6) variable -> lista COLON INTEGER . SEMICOLON
+
+    SEMICOLON       shift and go to state 82
+
+
+state 42
+
+    (7) variable -> lista COLON REAL . SEMICOLON
+
+    SEMICOLON       shift and go to state 83
+
+
+state 43
+
+    (8) variable -> lista COLON STRING . SEMICOLON
+
+    SEMICOLON       shift and go to state 84
+
+
+state 44
+
+    (9) variable -> lista COLON CHARACTER . SEMICOLON
+
+    SEMICOLON       shift and go to state 85
+
+
+state 45
+
+    (10) variable -> lista COLON BOOLEAN . SEMICOLON
+
+    SEMICOLON       shift and go to state 86
+
+
+state 46
+
+    (11) variable -> ID COLON INTEGER . SEMICOLON
+
+    SEMICOLON       shift and go to state 87
+
+
+state 47
+
+    (12) variable -> ID COLON REAL . SEMICOLON
+
+    SEMICOLON       shift and go to state 88
+
+
+state 48
+
+    (13) variable -> ID COLON STRING . SEMICOLON
+
+    SEMICOLON       shift and go to state 89
+
+
+state 49
+
+    (14) variable -> ID COLON CHARACTER . SEMICOLON
+
+    SEMICOLON       shift and go to state 90
+
+
+state 50
+
+    (15) variable -> ID COLON BOOLEAN . SEMICOLON
+
+    SEMICOLON       shift and go to state 91
+
+
+state 51
+
+    (16) lista -> ID .
+    (17) lista -> ID . COMMA lista
+
+    COLON           reduce using rule 16 (lista -> ID .)
+    COMMA           shift and go to state 16
+
+
+state 52
+
+    (17) lista -> ID COMMA lista .
+
+    COLON           reduce using rule 17 (lista -> ID COMMA lista .)
+
+
+state 53
+
+    (33) assignment_stmt -> ID ASSIGN . expression
+    (34) assignment_stmt -> ID ASSIGN . expression_bool
+    (35) assignment_stmt -> ID ASSIGN . expression_string
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (36) expression_string -> . expression_string PLUS STR_value
+    (37) expression_string -> . STR_value
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (38) STR_value -> . STR
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    STR             shift and go to state 96
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+    BOOL            shift and go to state 40
+
+    expression                     shift and go to state 92
+    expression_bool                shift and go to state 93
+    expression_string              shift and go to state 94
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    STR_value                      shift and go to state 95
+    factor                         shift and go to state 34
+    factor_bool                    shift and go to state 37
+
+state 54
+
+    (66) change -> ID INCREMENT .
+
+    SEMICOLON       reduce using rule 66 (change -> ID INCREMENT .)
+    RPAREN          reduce using rule 66 (change -> ID INCREMENT .)
+
+
+state 55
+
+    (67) change -> ID DECREMENT .
+
+    SEMICOLON       reduce using rule 67 (change -> ID DECREMENT .)
+    RPAREN          reduce using rule 67 (change -> ID DECREMENT .)
+
+
+state 56
+
+    (1) program -> PROGRAM ID LKEY V BEGIN SEMICOLON statement_list END . SEMICOLON RKEY
+
+    SEMICOLON       shift and go to state 97
+
+
+state 57
+
+    (19) statement_list -> statement_list statement .
+
+    END             reduce using rule 19 (statement_list -> statement_list statement .)
+    ID              reduce using rule 19 (statement_list -> statement_list statement .)
+    IF              reduce using rule 19 (statement_list -> statement_list statement .)
+    WHILE           reduce using rule 19 (statement_list -> statement_list statement .)
+    FOR             reduce using rule 19 (statement_list -> statement_list statement .)
+    WRITE           reduce using rule 19 (statement_list -> statement_list statement .)
+    LPAREN          reduce using rule 19 (statement_list -> statement_list statement .)
+    INT             reduce using rule 19 (statement_list -> statement_list statement .)
+    FLOAT           reduce using rule 19 (statement_list -> statement_list statement .)
+    BOOL            reduce using rule 19 (statement_list -> statement_list statement .)
+    RKEY            reduce using rule 19 (statement_list -> statement_list statement .)
+
+
+state 58
+
+    (20) statement -> assignment_stmt SEMICOLON .
+
+    END             reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    ID              reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    IF              reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    WHILE           reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    FOR             reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    WRITE           reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    LPAREN          reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    INT             reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    FLOAT           reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    BOOL            reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+    RKEY            reduce using rule 20 (statement -> assignment_stmt SEMICOLON .)
+
+
+state 59
+
+    (21) statement -> expression_stmt SEMICOLON .
+
+    END             reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    ID              reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    IF              reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    WHILE           reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    FOR             reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    WRITE           reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    LPAREN          reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    INT             reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    FLOAT           reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    BOOL            reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+    RKEY            reduce using rule 21 (statement -> expression_stmt SEMICOLON .)
+
+
+state 60
+
+    (25) statement -> write_stmt SEMICOLON .
+
+    END             reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    ID              reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    IF              reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    WHILE           reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    FOR             reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    WRITE           reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    LPAREN          reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    INT             reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    FLOAT           reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    BOOL            reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+    RKEY            reduce using rule 25 (statement -> write_stmt SEMICOLON .)
+
+
+state 61
+
+    (26) statement -> change SEMICOLON .
+
+    END             reduce using rule 26 (statement -> change SEMICOLON .)
+    ID              reduce using rule 26 (statement -> change SEMICOLON .)
+    IF              reduce using rule 26 (statement -> change SEMICOLON .)
+    WHILE           reduce using rule 26 (statement -> change SEMICOLON .)
+    FOR             reduce using rule 26 (statement -> change SEMICOLON .)
+    WRITE           reduce using rule 26 (statement -> change SEMICOLON .)
+    LPAREN          reduce using rule 26 (statement -> change SEMICOLON .)
+    INT             reduce using rule 26 (statement -> change SEMICOLON .)
+    FLOAT           reduce using rule 26 (statement -> change SEMICOLON .)
+    BOOL            reduce using rule 26 (statement -> change SEMICOLON .)
+    RKEY            reduce using rule 26 (statement -> change SEMICOLON .)
+
+
+state 62
+
+    (55) expression -> expression PLUS . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    term                           shift and go to state 98
+    factor                         shift and go to state 34
+
+state 63
+
+    (56) expression -> expression MINUS . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    term                           shift and go to state 100
+    factor                         shift and go to state 34
+
+state 64
+
+    (46) comparation -> expression GREATER . expression
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression                     shift and go to state 101
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 65
+
+    (47) comparation -> expression GREATER_EQUAL . expression
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression                     shift and go to state 102
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 66
+
+    (48) comparation -> expression LESS . expression
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression                     shift and go to state 103
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 67
+
+    (49) comparation -> expression LESS_EQUAL . expression
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression                     shift and go to state 104
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 68
+
+    (50) comparation -> expression DIFFERENT . expression
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression                     shift and go to state 105
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 69
+
+    (51) comparation -> expression EQUALS . expression
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression                     shift and go to state 106
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 70
+
+    (43) expression_bool -> expression_bool AND . comparation
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 109
+    BOOL            shift and go to state 40
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    comparation                    shift and go to state 107
+    expression                     shift and go to state 108
+    factor_bool                    shift and go to state 37
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 71
+
+    (44) expression_bool -> expression_bool OR . comparation
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 109
+    BOOL            shift and go to state 40
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    comparation                    shift and go to state 110
+    expression                     shift and go to state 108
+    factor_bool                    shift and go to state 37
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 72
+
+    (39) if_stmt -> IF LPAREN . expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> IF LPAREN . expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 109
+    BOOL            shift and go to state 40
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression_bool                shift and go to state 111
+    comparation                    shift and go to state 36
+    expression                     shift and go to state 108
+    factor_bool                    shift and go to state 37
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 73
+
+    (62) factor -> LPAREN expression . RPAREN
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+    (46) comparation -> expression . GREATER expression
+    (47) comparation -> expression . GREATER_EQUAL expression
+    (48) comparation -> expression . LESS expression
+    (49) comparation -> expression . LESS_EQUAL expression
+    (50) comparation -> expression . DIFFERENT expression
+    (51) comparation -> expression . EQUALS expression
+
+    RPAREN          shift and go to state 112
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+    GREATER         shift and go to state 64
+    GREATER_EQUAL   shift and go to state 65
+    LESS            shift and go to state 66
+    LESS_EQUAL      shift and go to state 67
+    DIFFERENT       shift and go to state 68
+    EQUALS          shift and go to state 69
+
+
+state 74
+
+    (53) factor_bool -> LPAREN expression_bool . RPAREN
+    (43) expression_bool -> expression_bool . AND comparation
+    (44) expression_bool -> expression_bool . OR comparation
+
+    RPAREN          shift and go to state 113
+    AND             shift and go to state 70
+    OR              shift and go to state 71
+
+
+state 75
+
+    (65) factor -> ID .
+
+    MOD             reduce using rule 65 (factor -> ID .)
+    TIMES           reduce using rule 65 (factor -> ID .)
+    DIVIDE          reduce using rule 65 (factor -> ID .)
+    RPAREN          reduce using rule 65 (factor -> ID .)
+    PLUS            reduce using rule 65 (factor -> ID .)
+    MINUS           reduce using rule 65 (factor -> ID .)
+    GREATER         reduce using rule 65 (factor -> ID .)
+    GREATER_EQUAL   reduce using rule 65 (factor -> ID .)
+    LESS            reduce using rule 65 (factor -> ID .)
+    LESS_EQUAL      reduce using rule 65 (factor -> ID .)
+    DIFFERENT       reduce using rule 65 (factor -> ID .)
+    EQUALS          reduce using rule 65 (factor -> ID .)
+    SEMICOLON       reduce using rule 65 (factor -> ID .)
+    AND             reduce using rule 65 (factor -> ID .)
+    OR              reduce using rule 65 (factor -> ID .)
+
+
+state 76
+
+    (41) while_stmt -> WHILE LPAREN . expression_bool RPAREN DO LKEY statement_list RKEY
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 109
+    BOOL            shift and go to state 40
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression_bool                shift and go to state 114
+    comparation                    shift and go to state 36
+    expression                     shift and go to state 108
+    factor_bool                    shift and go to state 37
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 77
+
+    (42) for_stmt -> FOR LPAREN . assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+
+    ID              shift and go to state 116
+
+    assignment_stmt                shift and go to state 115
+
+state 78
+
+    (27) write_stmt -> WRITE LPAREN . factor RPAREN
+    (28) write_stmt -> WRITE LPAREN . expression RPAREN
+    (29) write_stmt -> WRITE LPAREN . expression_string RPAREN
+    (30) write_stmt -> WRITE LPAREN . expression_bool RPAREN
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (36) expression_string -> . expression_string PLUS STR_value
+    (37) expression_string -> . STR_value
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (38) STR_value -> . STR
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+    STR             shift and go to state 96
+    BOOL            shift and go to state 40
+
+    factor                         shift and go to state 117
+    expression                     shift and go to state 118
+    expression_string              shift and go to state 119
+    expression_bool                shift and go to state 120
+    term                           shift and go to state 35
+    STR_value                      shift and go to state 95
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 79
+
+    (58) term -> term MOD . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    factor                         shift and go to state 121
+
+state 80
+
+    (59) term -> term TIMES . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    factor                         shift and go to state 122
+
+state 81
+
+    (60) term -> term DIVIDE . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    factor                         shift and go to state 123
+
+state 82
+
+    (6) variable -> lista COLON INTEGER SEMICOLON .
+
+    ID              reduce using rule 6 (variable -> lista COLON INTEGER SEMICOLON .)
+    BEGIN           reduce using rule 6 (variable -> lista COLON INTEGER SEMICOLON .)
+
+
+state 83
+
+    (7) variable -> lista COLON REAL SEMICOLON .
+
+    ID              reduce using rule 7 (variable -> lista COLON REAL SEMICOLON .)
+    BEGIN           reduce using rule 7 (variable -> lista COLON REAL SEMICOLON .)
+
+
+state 84
+
+    (8) variable -> lista COLON STRING SEMICOLON .
+
+    ID              reduce using rule 8 (variable -> lista COLON STRING SEMICOLON .)
+    BEGIN           reduce using rule 8 (variable -> lista COLON STRING SEMICOLON .)
+
+
+state 85
+
+    (9) variable -> lista COLON CHARACTER SEMICOLON .
+
+    ID              reduce using rule 9 (variable -> lista COLON CHARACTER SEMICOLON .)
+    BEGIN           reduce using rule 9 (variable -> lista COLON CHARACTER SEMICOLON .)
+
+
+state 86
+
+    (10) variable -> lista COLON BOOLEAN SEMICOLON .
+
+    ID              reduce using rule 10 (variable -> lista COLON BOOLEAN SEMICOLON .)
+    BEGIN           reduce using rule 10 (variable -> lista COLON BOOLEAN SEMICOLON .)
+
+
+state 87
+
+    (11) variable -> ID COLON INTEGER SEMICOLON .
+
+    ID              reduce using rule 11 (variable -> ID COLON INTEGER SEMICOLON .)
+    BEGIN           reduce using rule 11 (variable -> ID COLON INTEGER SEMICOLON .)
+
+
+state 88
+
+    (12) variable -> ID COLON REAL SEMICOLON .
+
+    ID              reduce using rule 12 (variable -> ID COLON REAL SEMICOLON .)
+    BEGIN           reduce using rule 12 (variable -> ID COLON REAL SEMICOLON .)
+
+
+state 89
+
+    (13) variable -> ID COLON STRING SEMICOLON .
+
+    ID              reduce using rule 13 (variable -> ID COLON STRING SEMICOLON .)
+    BEGIN           reduce using rule 13 (variable -> ID COLON STRING SEMICOLON .)
+
+
+state 90
+
+    (14) variable -> ID COLON CHARACTER SEMICOLON .
+
+    ID              reduce using rule 14 (variable -> ID COLON CHARACTER SEMICOLON .)
+    BEGIN           reduce using rule 14 (variable -> ID COLON CHARACTER SEMICOLON .)
+
+
+state 91
+
+    (15) variable -> ID COLON BOOLEAN SEMICOLON .
+
+    ID              reduce using rule 15 (variable -> ID COLON BOOLEAN SEMICOLON .)
+    BEGIN           reduce using rule 15 (variable -> ID COLON BOOLEAN SEMICOLON .)
+
+
+state 92
+
+    (33) assignment_stmt -> ID ASSIGN expression .
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+    (46) comparation -> expression . GREATER expression
+    (47) comparation -> expression . GREATER_EQUAL expression
+    (48) comparation -> expression . LESS expression
+    (49) comparation -> expression . LESS_EQUAL expression
+    (50) comparation -> expression . DIFFERENT expression
+    (51) comparation -> expression . EQUALS expression
+
+    SEMICOLON       reduce using rule 33 (assignment_stmt -> ID ASSIGN expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+    GREATER         shift and go to state 64
+    GREATER_EQUAL   shift and go to state 65
+    LESS            shift and go to state 66
+    LESS_EQUAL      shift and go to state 67
+    DIFFERENT       shift and go to state 68
+    EQUALS          shift and go to state 69
+
+
+state 93
+
+    (34) assignment_stmt -> ID ASSIGN expression_bool .
+    (43) expression_bool -> expression_bool . AND comparation
+    (44) expression_bool -> expression_bool . OR comparation
+
+    SEMICOLON       reduce using rule 34 (assignment_stmt -> ID ASSIGN expression_bool .)
+    AND             shift and go to state 70
+    OR              shift and go to state 71
+
+
+state 94
+
+    (35) assignment_stmt -> ID ASSIGN expression_string .
+    (36) expression_string -> expression_string . PLUS STR_value
+
+    SEMICOLON       reduce using rule 35 (assignment_stmt -> ID ASSIGN expression_string .)
+    PLUS            shift and go to state 124
+
+
+state 95
+
+    (37) expression_string -> STR_value .
+
+    PLUS            reduce using rule 37 (expression_string -> STR_value .)
+    SEMICOLON       reduce using rule 37 (expression_string -> STR_value .)
+    RPAREN          reduce using rule 37 (expression_string -> STR_value .)
+
+
+state 96
+
+    (38) STR_value -> STR .
+
+    PLUS            reduce using rule 38 (STR_value -> STR .)
+    SEMICOLON       reduce using rule 38 (STR_value -> STR .)
+    RPAREN          reduce using rule 38 (STR_value -> STR .)
+
+
+state 97
+
+    (1) program -> PROGRAM ID LKEY V BEGIN SEMICOLON statement_list END SEMICOLON . RKEY
+
+    RKEY            shift and go to state 125
+
+
+state 98
+
+    (55) expression -> expression PLUS term .
+    (58) term -> term . MOD factor
+    (59) term -> term . TIMES factor
+    (60) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 55 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 55 (expression -> expression PLUS term .)
+    GREATER         reduce using rule 55 (expression -> expression PLUS term .)
+    GREATER_EQUAL   reduce using rule 55 (expression -> expression PLUS term .)
+    LESS            reduce using rule 55 (expression -> expression PLUS term .)
+    LESS_EQUAL      reduce using rule 55 (expression -> expression PLUS term .)
+    DIFFERENT       reduce using rule 55 (expression -> expression PLUS term .)
+    EQUALS          reduce using rule 55 (expression -> expression PLUS term .)
+    SEMICOLON       reduce using rule 55 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 55 (expression -> expression PLUS term .)
+    AND             reduce using rule 55 (expression -> expression PLUS term .)
+    OR              reduce using rule 55 (expression -> expression PLUS term .)
+    MOD             shift and go to state 79
+    TIMES           shift and go to state 80
+    DIVIDE          shift and go to state 81
+
+
+state 99
+
+    (62) factor -> LPAREN . expression RPAREN
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 99
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression                     shift and go to state 126
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 100
+
+    (56) expression -> expression MINUS term .
+    (58) term -> term . MOD factor
+    (59) term -> term . TIMES factor
+    (60) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 56 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 56 (expression -> expression MINUS term .)
+    GREATER         reduce using rule 56 (expression -> expression MINUS term .)
+    GREATER_EQUAL   reduce using rule 56 (expression -> expression MINUS term .)
+    LESS            reduce using rule 56 (expression -> expression MINUS term .)
+    LESS_EQUAL      reduce using rule 56 (expression -> expression MINUS term .)
+    DIFFERENT       reduce using rule 56 (expression -> expression MINUS term .)
+    EQUALS          reduce using rule 56 (expression -> expression MINUS term .)
+    SEMICOLON       reduce using rule 56 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 56 (expression -> expression MINUS term .)
+    AND             reduce using rule 56 (expression -> expression MINUS term .)
+    OR              reduce using rule 56 (expression -> expression MINUS term .)
+    MOD             shift and go to state 79
+    TIMES           shift and go to state 80
+    DIVIDE          shift and go to state 81
+
+
+state 101
+
+    (46) comparation -> expression GREATER expression .
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+
+    AND             reduce using rule 46 (comparation -> expression GREATER expression .)
+    OR              reduce using rule 46 (comparation -> expression GREATER expression .)
+    SEMICOLON       reduce using rule 46 (comparation -> expression GREATER expression .)
+    RPAREN          reduce using rule 46 (comparation -> expression GREATER expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+
+
+state 102
+
+    (47) comparation -> expression GREATER_EQUAL expression .
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+
+    AND             reduce using rule 47 (comparation -> expression GREATER_EQUAL expression .)
+    OR              reduce using rule 47 (comparation -> expression GREATER_EQUAL expression .)
+    SEMICOLON       reduce using rule 47 (comparation -> expression GREATER_EQUAL expression .)
+    RPAREN          reduce using rule 47 (comparation -> expression GREATER_EQUAL expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+
+
+state 103
+
+    (48) comparation -> expression LESS expression .
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+
+    AND             reduce using rule 48 (comparation -> expression LESS expression .)
+    OR              reduce using rule 48 (comparation -> expression LESS expression .)
+    SEMICOLON       reduce using rule 48 (comparation -> expression LESS expression .)
+    RPAREN          reduce using rule 48 (comparation -> expression LESS expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+
+
+state 104
+
+    (49) comparation -> expression LESS_EQUAL expression .
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+
+    AND             reduce using rule 49 (comparation -> expression LESS_EQUAL expression .)
+    OR              reduce using rule 49 (comparation -> expression LESS_EQUAL expression .)
+    SEMICOLON       reduce using rule 49 (comparation -> expression LESS_EQUAL expression .)
+    RPAREN          reduce using rule 49 (comparation -> expression LESS_EQUAL expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+
+
+state 105
+
+    (50) comparation -> expression DIFFERENT expression .
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+
+    AND             reduce using rule 50 (comparation -> expression DIFFERENT expression .)
+    OR              reduce using rule 50 (comparation -> expression DIFFERENT expression .)
+    SEMICOLON       reduce using rule 50 (comparation -> expression DIFFERENT expression .)
+    RPAREN          reduce using rule 50 (comparation -> expression DIFFERENT expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+
+
+state 106
+
+    (51) comparation -> expression EQUALS expression .
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+
+    AND             reduce using rule 51 (comparation -> expression EQUALS expression .)
+    OR              reduce using rule 51 (comparation -> expression EQUALS expression .)
+    SEMICOLON       reduce using rule 51 (comparation -> expression EQUALS expression .)
+    RPAREN          reduce using rule 51 (comparation -> expression EQUALS expression .)
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+
+
+state 107
+
+    (43) expression_bool -> expression_bool AND comparation .
+
+    AND             reduce using rule 43 (expression_bool -> expression_bool AND comparation .)
+    OR              reduce using rule 43 (expression_bool -> expression_bool AND comparation .)
+    SEMICOLON       reduce using rule 43 (expression_bool -> expression_bool AND comparation .)
+    RPAREN          reduce using rule 43 (expression_bool -> expression_bool AND comparation .)
+
+
+state 108
+
+    (46) comparation -> expression . GREATER expression
+    (47) comparation -> expression . GREATER_EQUAL expression
+    (48) comparation -> expression . LESS expression
+    (49) comparation -> expression . LESS_EQUAL expression
+    (50) comparation -> expression . DIFFERENT expression
+    (51) comparation -> expression . EQUALS expression
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+
+    GREATER         shift and go to state 64
+    GREATER_EQUAL   shift and go to state 65
+    LESS            shift and go to state 66
+    LESS_EQUAL      shift and go to state 67
+    DIFFERENT       shift and go to state 68
+    EQUALS          shift and go to state 69
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+
+
+state 109
+
+    (53) factor_bool -> LPAREN . expression_bool RPAREN
+    (62) factor -> LPAREN . expression RPAREN
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 109
+    BOOL            shift and go to state 40
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression_bool                shift and go to state 74
+    expression                     shift and go to state 73
+    comparation                    shift and go to state 36
+    term                           shift and go to state 35
+    factor_bool                    shift and go to state 37
+    factor                         shift and go to state 34
+
+state 110
+
+    (44) expression_bool -> expression_bool OR comparation .
+
+    AND             reduce using rule 44 (expression_bool -> expression_bool OR comparation .)
+    OR              reduce using rule 44 (expression_bool -> expression_bool OR comparation .)
+    SEMICOLON       reduce using rule 44 (expression_bool -> expression_bool OR comparation .)
+    RPAREN          reduce using rule 44 (expression_bool -> expression_bool OR comparation .)
+
+
+state 111
+
+    (39) if_stmt -> IF LPAREN expression_bool . RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> IF LPAREN expression_bool . RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (43) expression_bool -> expression_bool . AND comparation
+    (44) expression_bool -> expression_bool . OR comparation
+
+    RPAREN          shift and go to state 127
+    AND             shift and go to state 70
+    OR              shift and go to state 71
+
+
+state 112
+
+    (62) factor -> LPAREN expression RPAREN .
+
+    MOD             reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    GREATER         reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    GREATER_EQUAL   reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    LESS            reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    LESS_EQUAL      reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    DIFFERENT       reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    EQUALS          reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    AND             reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+    OR              reduce using rule 62 (factor -> LPAREN expression RPAREN .)
+
+
+state 113
+
+    (53) factor_bool -> LPAREN expression_bool RPAREN .
+
+    AND             reduce using rule 53 (factor_bool -> LPAREN expression_bool RPAREN .)
+    OR              reduce using rule 53 (factor_bool -> LPAREN expression_bool RPAREN .)
+    SEMICOLON       reduce using rule 53 (factor_bool -> LPAREN expression_bool RPAREN .)
+    RPAREN          reduce using rule 53 (factor_bool -> LPAREN expression_bool RPAREN .)
+
+
+state 114
+
+    (41) while_stmt -> WHILE LPAREN expression_bool . RPAREN DO LKEY statement_list RKEY
+    (43) expression_bool -> expression_bool . AND comparation
+    (44) expression_bool -> expression_bool . OR comparation
+
+    RPAREN          shift and go to state 128
+    AND             shift and go to state 70
+    OR              shift and go to state 71
+
+
+state 115
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt . SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+
+    SEMICOLON       shift and go to state 129
+
+
+state 116
+
+    (33) assignment_stmt -> ID . ASSIGN expression
+    (34) assignment_stmt -> ID . ASSIGN expression_bool
+    (35) assignment_stmt -> ID . ASSIGN expression_string
+
+    ASSIGN          shift and go to state 53
+
+
+state 117
+
+    (27) write_stmt -> WRITE LPAREN factor . RPAREN
+    (61) term -> factor .
+
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 130
+    MOD             reduce using rule 61 (term -> factor .)
+    TIMES           reduce using rule 61 (term -> factor .)
+    DIVIDE          reduce using rule 61 (term -> factor .)
+    PLUS            reduce using rule 61 (term -> factor .)
+    MINUS           reduce using rule 61 (term -> factor .)
+    GREATER         reduce using rule 61 (term -> factor .)
+    GREATER_EQUAL   reduce using rule 61 (term -> factor .)
+    LESS            reduce using rule 61 (term -> factor .)
+    LESS_EQUAL      reduce using rule 61 (term -> factor .)
+    DIFFERENT       reduce using rule 61 (term -> factor .)
+    EQUALS          reduce using rule 61 (term -> factor .)
+
+  ! RPAREN          [ reduce using rule 61 (term -> factor .) ]
+
+
+state 118
+
+    (28) write_stmt -> WRITE LPAREN expression . RPAREN
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+    (46) comparation -> expression . GREATER expression
+    (47) comparation -> expression . GREATER_EQUAL expression
+    (48) comparation -> expression . LESS expression
+    (49) comparation -> expression . LESS_EQUAL expression
+    (50) comparation -> expression . DIFFERENT expression
+    (51) comparation -> expression . EQUALS expression
+
+    RPAREN          shift and go to state 131
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+    GREATER         shift and go to state 64
+    GREATER_EQUAL   shift and go to state 65
+    LESS            shift and go to state 66
+    LESS_EQUAL      shift and go to state 67
+    DIFFERENT       shift and go to state 68
+    EQUALS          shift and go to state 69
+
+
+state 119
+
+    (29) write_stmt -> WRITE LPAREN expression_string . RPAREN
+    (36) expression_string -> expression_string . PLUS STR_value
+
+    RPAREN          shift and go to state 132
+    PLUS            shift and go to state 124
+
+
+state 120
+
+    (30) write_stmt -> WRITE LPAREN expression_bool . RPAREN
+    (43) expression_bool -> expression_bool . AND comparation
+    (44) expression_bool -> expression_bool . OR comparation
+
+    RPAREN          shift and go to state 133
+    AND             shift and go to state 70
+    OR              shift and go to state 71
+
+
+state 121
+
+    (58) term -> term MOD factor .
+
+    MOD             reduce using rule 58 (term -> term MOD factor .)
+    TIMES           reduce using rule 58 (term -> term MOD factor .)
+    DIVIDE          reduce using rule 58 (term -> term MOD factor .)
+    PLUS            reduce using rule 58 (term -> term MOD factor .)
+    MINUS           reduce using rule 58 (term -> term MOD factor .)
+    GREATER         reduce using rule 58 (term -> term MOD factor .)
+    GREATER_EQUAL   reduce using rule 58 (term -> term MOD factor .)
+    LESS            reduce using rule 58 (term -> term MOD factor .)
+    LESS_EQUAL      reduce using rule 58 (term -> term MOD factor .)
+    DIFFERENT       reduce using rule 58 (term -> term MOD factor .)
+    EQUALS          reduce using rule 58 (term -> term MOD factor .)
+    SEMICOLON       reduce using rule 58 (term -> term MOD factor .)
+    RPAREN          reduce using rule 58 (term -> term MOD factor .)
+    AND             reduce using rule 58 (term -> term MOD factor .)
+    OR              reduce using rule 58 (term -> term MOD factor .)
+
+
+state 122
+
+    (59) term -> term TIMES factor .
+
+    MOD             reduce using rule 59 (term -> term TIMES factor .)
+    TIMES           reduce using rule 59 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 59 (term -> term TIMES factor .)
+    PLUS            reduce using rule 59 (term -> term TIMES factor .)
+    MINUS           reduce using rule 59 (term -> term TIMES factor .)
+    GREATER         reduce using rule 59 (term -> term TIMES factor .)
+    GREATER_EQUAL   reduce using rule 59 (term -> term TIMES factor .)
+    LESS            reduce using rule 59 (term -> term TIMES factor .)
+    LESS_EQUAL      reduce using rule 59 (term -> term TIMES factor .)
+    DIFFERENT       reduce using rule 59 (term -> term TIMES factor .)
+    EQUALS          reduce using rule 59 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 59 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 59 (term -> term TIMES factor .)
+    AND             reduce using rule 59 (term -> term TIMES factor .)
+    OR              reduce using rule 59 (term -> term TIMES factor .)
+
+
+state 123
+
+    (60) term -> term DIVIDE factor .
+
+    MOD             reduce using rule 60 (term -> term DIVIDE factor .)
+    TIMES           reduce using rule 60 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 60 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 60 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 60 (term -> term DIVIDE factor .)
+    GREATER         reduce using rule 60 (term -> term DIVIDE factor .)
+    GREATER_EQUAL   reduce using rule 60 (term -> term DIVIDE factor .)
+    LESS            reduce using rule 60 (term -> term DIVIDE factor .)
+    LESS_EQUAL      reduce using rule 60 (term -> term DIVIDE factor .)
+    DIFFERENT       reduce using rule 60 (term -> term DIVIDE factor .)
+    EQUALS          reduce using rule 60 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 60 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 60 (term -> term DIVIDE factor .)
+    AND             reduce using rule 60 (term -> term DIVIDE factor .)
+    OR              reduce using rule 60 (term -> term DIVIDE factor .)
+
+
+state 124
+
+    (36) expression_string -> expression_string PLUS . STR_value
+    (38) STR_value -> . STR
+
+    STR             shift and go to state 96
+
+    STR_value                      shift and go to state 134
+
+state 125
+
+    (1) program -> PROGRAM ID LKEY V BEGIN SEMICOLON statement_list END SEMICOLON RKEY .
+
+    $end            reduce using rule 1 (program -> PROGRAM ID LKEY V BEGIN SEMICOLON statement_list END SEMICOLON RKEY .)
+
+
+state 126
+
+    (62) factor -> LPAREN expression . RPAREN
+    (55) expression -> expression . PLUS term
+    (56) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 112
+    PLUS            shift and go to state 62
+    MINUS           shift and go to state 63
+
+
+state 127
+
+    (39) if_stmt -> IF LPAREN expression_bool RPAREN . THEN LKEY statement_list RKEY
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN . THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+
+    THEN            shift and go to state 135
+
+
+state 128
+
+    (41) while_stmt -> WHILE LPAREN expression_bool RPAREN . DO LKEY statement_list RKEY
+
+    DO              shift and go to state 136
+
+
+state 129
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt SEMICOLON . expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+
+    LPAREN          shift and go to state 109
+    BOOL            shift and go to state 40
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    ID              shift and go to state 75
+
+    expression_bool                shift and go to state 137
+    comparation                    shift and go to state 36
+    expression                     shift and go to state 108
+    factor_bool                    shift and go to state 37
+    term                           shift and go to state 35
+    factor                         shift and go to state 34
+
+state 130
+
+    (27) write_stmt -> WRITE LPAREN factor RPAREN .
+
+    SEMICOLON       reduce using rule 27 (write_stmt -> WRITE LPAREN factor RPAREN .)
+
+
+state 131
+
+    (28) write_stmt -> WRITE LPAREN expression RPAREN .
+
+    SEMICOLON       reduce using rule 28 (write_stmt -> WRITE LPAREN expression RPAREN .)
+
+
+state 132
+
+    (29) write_stmt -> WRITE LPAREN expression_string RPAREN .
+
+    SEMICOLON       reduce using rule 29 (write_stmt -> WRITE LPAREN expression_string RPAREN .)
+
+
+state 133
+
+    (30) write_stmt -> WRITE LPAREN expression_bool RPAREN .
+
+    SEMICOLON       reduce using rule 30 (write_stmt -> WRITE LPAREN expression_bool RPAREN .)
+
+
+state 134
+
+    (36) expression_string -> expression_string PLUS STR_value .
+
+    PLUS            reduce using rule 36 (expression_string -> expression_string PLUS STR_value .)
+    SEMICOLON       reduce using rule 36 (expression_string -> expression_string PLUS STR_value .)
+    RPAREN          reduce using rule 36 (expression_string -> expression_string PLUS STR_value .)
+
+
+state 135
+
+    (39) if_stmt -> IF LPAREN expression_bool RPAREN THEN . LKEY statement_list RKEY
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN THEN . LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+
+    LKEY            shift and go to state 138
+
+
+state 136
+
+    (41) while_stmt -> WHILE LPAREN expression_bool RPAREN DO . LKEY statement_list RKEY
+
+    LKEY            shift and go to state 139
+
+
+state 137
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool . SEMICOLON change RPAREN LKEY statement_list RKEY
+    (43) expression_bool -> expression_bool . AND comparation
+    (44) expression_bool -> expression_bool . OR comparation
+
+    SEMICOLON       shift and go to state 140
+    AND             shift and go to state 70
+    OR              shift and go to state 71
+
+
+state 138
+
+    (39) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY . statement_list RKEY
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY . statement_list RKEY ELSE LKEY statement_list RKEY
+    (18) statement_list -> . statement
+    (19) statement_list -> . statement_list statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    expression_bool                shift and go to state 28
+    statement_list                 shift and go to state 141
+    statement                      shift and go to state 19
+    assignment_stmt                shift and go to state 20
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    change                         shift and go to state 26
+    expression                     shift and go to state 27
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 139
+
+    (41) while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY . statement_list RKEY
+    (18) statement_list -> . statement
+    (19) statement_list -> . statement_list statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    expression_bool                shift and go to state 28
+    statement_list                 shift and go to state 142
+    statement                      shift and go to state 19
+    assignment_stmt                shift and go to state 20
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    change                         shift and go to state 26
+    expression                     shift and go to state 27
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 140
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON . change RPAREN LKEY statement_list RKEY
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+
+    ID              shift and go to state 144
+
+    change                         shift and go to state 143
+
+state 141
+
+    (39) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list . RKEY
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list . RKEY ELSE LKEY statement_list RKEY
+    (19) statement_list -> statement_list . statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    RKEY            shift and go to state 145
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    expression_bool                shift and go to state 28
+    statement                      shift and go to state 57
+    assignment_stmt                shift and go to state 20
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    change                         shift and go to state 26
+    expression                     shift and go to state 27
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 142
+
+    (41) while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list . RKEY
+    (19) statement_list -> statement_list . statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    RKEY            shift and go to state 146
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    expression_bool                shift and go to state 28
+    statement                      shift and go to state 57
+    assignment_stmt                shift and go to state 20
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    change                         shift and go to state 26
+    expression                     shift and go to state 27
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 143
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change . RPAREN LKEY statement_list RKEY
+
+    RPAREN          shift and go to state 147
+
+
+state 144
+
+    (66) change -> ID . INCREMENT
+    (67) change -> ID . DECREMENT
+
+    INCREMENT       shift and go to state 54
+    DECREMENT       shift and go to state 55
+
+
+state 145
+
+    (39) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY . ELSE LKEY statement_list RKEY
+
+    END             reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    ID              reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    IF              reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    WHILE           reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    FOR             reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    WRITE           reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    LPAREN          reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    INT             reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    FLOAT           reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    BOOL            reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    RKEY            reduce using rule 39 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY .)
+    ELSE            shift and go to state 148
+
+
+state 146
+
+    (41) while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .
+
+    END             reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    ID              reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    IF              reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    WHILE           reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    FOR             reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    WRITE           reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    LPAREN          reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    INT             reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    FLOAT           reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    BOOL            reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+    RKEY            reduce using rule 41 (while_stmt -> WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY .)
+
+
+state 147
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN . LKEY statement_list RKEY
+
+    LKEY            shift and go to state 149
+
+
+state 148
+
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE . LKEY statement_list RKEY
+
+    LKEY            shift and go to state 150
+
+
+state 149
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY . statement_list RKEY
+    (18) statement_list -> . statement
+    (19) statement_list -> . statement_list statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    assignment_stmt                shift and go to state 20
+    expression_bool                shift and go to state 28
+    change                         shift and go to state 26
+    statement_list                 shift and go to state 151
+    statement                      shift and go to state 19
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    expression                     shift and go to state 27
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 150
+
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY . statement_list RKEY
+    (18) statement_list -> . statement
+    (19) statement_list -> . statement_list statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    expression_bool                shift and go to state 28
+    statement_list                 shift and go to state 152
+    statement                      shift and go to state 19
+    assignment_stmt                shift and go to state 20
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    change                         shift and go to state 26
+    expression                     shift and go to state 27
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 151
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list . RKEY
+    (19) statement_list -> statement_list . statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    RKEY            shift and go to state 153
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    assignment_stmt                shift and go to state 20
+    expression_bool                shift and go to state 28
+    change                         shift and go to state 26
+    statement                      shift and go to state 57
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    expression                     shift and go to state 27
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 152
+
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list . RKEY
+    (19) statement_list -> statement_list . statement
+    (20) statement -> . assignment_stmt SEMICOLON
+    (21) statement -> . expression_stmt SEMICOLON
+    (22) statement -> . if_stmt
+    (23) statement -> . while_stmt
+    (24) statement -> . for_stmt
+    (25) statement -> . write_stmt SEMICOLON
+    (26) statement -> . change SEMICOLON
+    (33) assignment_stmt -> . ID ASSIGN expression
+    (34) assignment_stmt -> . ID ASSIGN expression_bool
+    (35) assignment_stmt -> . ID ASSIGN expression_string
+    (31) expression_stmt -> . expression
+    (32) expression_stmt -> . expression_bool
+    (39) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY
+    (40) if_stmt -> . IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY
+    (41) while_stmt -> . WHILE LPAREN expression_bool RPAREN DO LKEY statement_list RKEY
+    (42) for_stmt -> . FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY
+    (27) write_stmt -> . WRITE LPAREN factor RPAREN
+    (28) write_stmt -> . WRITE LPAREN expression RPAREN
+    (29) write_stmt -> . WRITE LPAREN expression_string RPAREN
+    (30) write_stmt -> . WRITE LPAREN expression_bool RPAREN
+    (66) change -> . ID INCREMENT
+    (67) change -> . ID DECREMENT
+    (55) expression -> . expression PLUS term
+    (56) expression -> . expression MINUS term
+    (57) expression -> . term
+    (43) expression_bool -> . expression_bool AND comparation
+    (44) expression_bool -> . expression_bool OR comparation
+    (45) expression_bool -> . comparation
+    (58) term -> . term MOD factor
+    (59) term -> . term TIMES factor
+    (60) term -> . term DIVIDE factor
+    (61) term -> . factor
+    (46) comparation -> . expression GREATER expression
+    (47) comparation -> . expression GREATER_EQUAL expression
+    (48) comparation -> . expression LESS expression
+    (49) comparation -> . expression LESS_EQUAL expression
+    (50) comparation -> . expression DIFFERENT expression
+    (51) comparation -> . expression EQUALS expression
+    (52) comparation -> . factor_bool
+    (62) factor -> . LPAREN expression RPAREN
+    (63) factor -> . INT
+    (64) factor -> . FLOAT
+    (65) factor -> . ID
+    (53) factor_bool -> . LPAREN expression_bool RPAREN
+    (54) factor_bool -> . BOOL
+
+    RKEY            shift and go to state 154
+    ID              shift and go to state 17
+    IF              shift and go to state 29
+    WHILE           shift and go to state 31
+    FOR             shift and go to state 32
+    WRITE           shift and go to state 33
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 38
+    FLOAT           shift and go to state 39
+    BOOL            shift and go to state 40
+
+    expression_bool                shift and go to state 28
+    statement                      shift and go to state 57
+    assignment_stmt                shift and go to state 20
+    expression_stmt                shift and go to state 21
+    if_stmt                        shift and go to state 22
+    while_stmt                     shift and go to state 23
+    for_stmt                       shift and go to state 24
+    write_stmt                     shift and go to state 25
+    change                         shift and go to state 26
+    expression                     shift and go to state 27
+    factor                         shift and go to state 34
+    term                           shift and go to state 35
+    comparation                    shift and go to state 36
+    factor_bool                    shift and go to state 37
+
+state 153
+
+    (42) for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .
+
+    END             reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    ID              reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    IF              reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    WHILE           reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    FOR             reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    WRITE           reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    LPAREN          reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    INT             reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    FLOAT           reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    BOOL            reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+    RKEY            reduce using rule 42 (for_stmt -> FOR LPAREN assignment_stmt SEMICOLON expression_bool SEMICOLON change RPAREN LKEY statement_list RKEY .)
+
+
+state 154
+
+    (40) if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .
+
+    END             reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    ID              reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    IF              reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    WHILE           reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    FOR             reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    WRITE           reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    LPAREN          reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    INT             reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    FLOAT           reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    BOOL            reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+    RKEY            reduce using rule 40 (if_stmt -> IF LPAREN expression_bool RPAREN THEN LKEY statement_list RKEY ELSE LKEY statement_list RKEY .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COLON in state 11 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 117 resolved as shift
